@@ -11,6 +11,8 @@ import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
+import {BACKPHOTO,PROFILE}from "../utils/constants"
+
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [errorMessage, seterrorMessage] = useState(null);
@@ -38,8 +40,8 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg",
+            photoURL:PROFILE
+            
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -56,13 +58,13 @@ const Login = () => {
               seterrorMessage(error);
             });
 
-          // ...
+         
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrorMessage(errorCode+ "-" + errorMessage);
-          // ..
+          seterrorMessage(errorCode + "-" + errorMessage);
+        
         });
     } else {
       signInWithEmailAndPassword(
@@ -74,7 +76,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           navigate("/browse");
-          // ...
+         
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -91,7 +93,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/dd4dfce3-1a39-4b1a-8e19-b7242da17e68/86742114-c001-4800-a127-c9c89ca7bbe4/IN-en-20240527-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BACKPHOTO}
           alt="not found"
         ></img>
       </div>
@@ -104,7 +106,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
-          ref={name}
+            ref={name}
             type="text"
             placeholder="Enter Full Name"
             className="p-2 my-2 w-full border-2 border-gray-500 text-white  bg-black rounded-sm opacity-11"
