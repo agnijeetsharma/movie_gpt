@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+    border-radius: 13px;
+     
+}
+::-webkit-scrollbar:hover{
+    background: rgb(34, 32, 32);
+    transition-duration: 2s;
+}
